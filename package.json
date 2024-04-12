@@ -1,44 +1,20 @@
 {
-  "name": "figma-export-compressed-images",
+  "name": "figma-image-compression",
   "version": "1.0.0",
-  "description": "Figma plugin to export compressed images.",
+  "description": "Platform for compressing images for Figma using webpack.",
   "scripts": {
-    "test": "npm run tsc && npm run build",
-    "format": "prettier --write .",
-    "tsc": "npm run tsc:main && npm run tsc:ui",
-    "tsc:main": "tsc --noEmit -p plugin-src",
-    "tsc:ui": "tsc --noEmit -p ui-src",
-    "tsc:watch": "concurrently -n widget,iframe \"npm run tsc:main -- --watch --preserveWatchOutput\" \"npm run tsc:ui -- --watch --preserveWatchOutput\"",
-    "build": "npm run build:ui && npm run build:main -- --minify",
-    "build:main": "esbuild plugin-src/code.ts --bundle --outfile=dist/code.js",
-    "build:ui": "npx vite build --minify esbuild --emptyOutDir=false",
-    "build:watch": "concurrently -n widget,iframe \"npm run build:main -- --watch\" \"npm run build:ui -- --watch\"",
-    "dev": "concurrently -n tsc,build,vite 'npm:tsc:watch' 'npm:build:watch' 'vite'"
+    "start": "webpack serve --config webpack.config.js --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jalil",
-  "license": "MIT License",
-  "dependencies": {
-    "axios": "^1.5.0",
-    "dotenv": "^16.3.1",
-    "jszip": "^3.10.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
-    "slugify": "^1.6.6",
-    "zustand": "^4.4.1"
-  },
+  "author": "Timur_etc",
+  "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.76.0",
-    "@types/node": "^20.5.9",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react-refresh": "^1.3.6",
-    "concurrently": "^8.2.1",
-    "esbuild": "^0.19.2",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vite-plugin-singlefile": "^0.13.5",
-    "vite-svg-loader": "^4.0.0"
+    "html-webpack-plugin": "^1.4.0",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.3.0",
+    "ts-loader": "^8.0.0",
+    "style-loader": "^3.3.0",
+    "css-loader": "^3.6.0"
   }
 }
